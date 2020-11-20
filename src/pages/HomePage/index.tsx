@@ -15,7 +15,7 @@ import Optionfish from '../../images/options/option-fish.png';
 import OptionBirds from '../../images/options/option-birds.png';
 import OptionReptile from '../../images/options/option-reptile.png';
 import OptionRodent from '../../images/options/option-rodent.png';
-import LogoNav from '../../images/options/nav-legs.png';
+
 
 function HomePage(){
     return (

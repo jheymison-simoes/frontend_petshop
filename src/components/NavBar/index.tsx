@@ -15,11 +15,12 @@ function NavBar() {
     // Verificando de Está na Home
     // Se estiver não deve mostrar o Texto Vitrine dos Animais
     let getUrl = window.location.pathname;
+    var texto: string;
 
     if(getUrl !== "/"){
-        var texto: string = "Vitrine dos Animais";
+        texto = "Vitrine dos Animais";
     } else {
-        var texto: string = "";
+        texto = "";
     }
 
     return (

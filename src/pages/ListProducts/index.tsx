@@ -4,14 +4,9 @@ import Slide from '../../components/SliderSlick';
 import NavBarResponsive from '../../components/NavBarResposive';
 import Products from '../../components/Products';
 
-
-import { Link } from 'react-router-dom';
 // Importando estilos
 import '../../styles/global.css';
 import './style.css';
-
-// Importando imagens e logo
-import LogoNav from '../../images/options/nav-legs.png';
 
 class ListProducts extends Component {
 
