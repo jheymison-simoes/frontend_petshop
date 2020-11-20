@@ -1,0 +1,52 @@
+
+.brand {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.brand-logo-nav {
+    height: 85%;
+    margin: auto 0;
+}
+
+.brand-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.brand-title:hover {
+    text-decoration: none;
+}
+
+.wrapper {
+    position: relative;
+    padding-top: .7rem;
+    cursor: pointer;
+    display: block;
+}
+
+span {
+    background: #ffffff;
+    display: block;
+    position: relative;
+    width: 3.0rem;
+    height: .3rem;
+    margin-bottom: .7rem;
+    transition: all ease-in-out 0.2s;
+}
+
+.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.open span:nth-child(3) {
+    transform: rotate(45deg);
+    top: -11px;
+}
+
+.open span:nth-child(1) {
+    transform: rotate(-45deg);
+    top: 11px;
+}
