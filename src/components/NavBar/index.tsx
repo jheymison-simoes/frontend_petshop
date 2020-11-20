@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiMenu } from 'react-icons/fi';
+
 
 // Importando CSS
 import '../../styles/global.css';
@@ -16,10 +16,10 @@ function NavBar() {
     // Se estiver não deve mostrar o Texto Vitrine dos Animais
     let getUrl = window.location.pathname;
 
-    if(getUrl != "/"){
-        var texto = "Vitrine dos Animais";
+    if(getUrl !== "/"){
+        var texto: string = "Vitrine dos Animais";
     } else {
-        var texto = "";
+        var texto: string = "";
     }
 
     return (

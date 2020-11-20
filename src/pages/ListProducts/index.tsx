@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Slide from '../../components/SliderSlick';
 import NavBarResponsive from '../../components/NavBarResposive';
 import Products from '../../components/Products';
-import InfiniteScroll from '../../components/InfiniteScroll';
+
 
 import { Link } from 'react-router-dom';
 // Importando estilos
