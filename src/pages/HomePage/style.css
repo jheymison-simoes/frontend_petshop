@@ -112,8 +112,9 @@ li:last-child {
     background-color: #4ABDAC;
 }
 
-@media (max-width:470px) {
+@media (max-width:400px) {
     .home-options {
         justify-content: space-between;
+        min-width: 370px;
     }
 }
