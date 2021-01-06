@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 
 import './styles/global.css';
-
+// Teste
 import Routes from './routes';
 
 function App() {
