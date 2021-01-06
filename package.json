@@ -75,7 +75,7 @@
         ]
     },
     "devDependencies": {
-        "@types/react-router-dom": "^5.1.6",
+        "@types/react-router-dom": "^5.1.7",
         "eslint": "^7.15.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-config-prettier": "^7.0.0",
