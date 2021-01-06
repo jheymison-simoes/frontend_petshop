@@ -8,9 +8,9 @@ function Burgermenu(props: any){
     return (
         <div className="wrapper" onClick={props.handleNavbar}>
             <div className={ props.navbarState ? "open" : "" }>
-                <span>&nbsp;</span>
-                <span>&nbsp;</span>
-                <span>&nbsp;</span>
+                <span className="span-nav">&nbsp;</span>
+                <span className="span-nav">&nbsp;</span>
+                <span className="span-nav">&nbsp;</span>
             </div>
         </div>
     );

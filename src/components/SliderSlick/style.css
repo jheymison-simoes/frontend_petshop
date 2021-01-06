@@ -1,7 +1,5 @@
-
 .slider-slick-container {
     width: 80%;
-    background-image: url(../../images/background-slider.jpg);
 }
 
 .slider-slick-items {
@@ -9,7 +7,6 @@
     flex-direction: column;
     width: 20%;
 }
-
 
 .slider-slick-items:hover {
     text-decoration: none;
@@ -30,19 +27,7 @@
     text-align: center;
 }
 
-.slick-next:before, .slick-prev:before {
+.slick-next:before,
+.slick-prev:before {
     color: #000;
 }
-
-/* .slick-arrow {
-    background-color: rgb(0, 0, 0);
-    border-radius: 50%;
-}
-
-.slick-arrow:hover {
-    background-color: rgb(126, 126, 126);
-}
-
-.slick-vertical{
-    height: 180px;
-} */

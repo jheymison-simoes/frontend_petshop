@@ -1,0 +1,126 @@
+.container-checkout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #dedede;
+    filter: blur(2);
+}
+
+.container-logo-cehckout {
+    width: 10%;
+}
+
+.content-checkout {
+    width: 70%;
+    border-radius: 25px;
+    height: auto;
+    background-color: #fff;
+    color: rgb(100, 100, 100);
+}
+
+.content-title-checkout {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.content-form-checkout {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-input-name {
+    width: 70%;
+    background-color: #fff;
+}
+
+.form-address {
+    width: 72%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.form-input-street {
+    width: 75%;
+}
+
+.form-input-number {
+    width: 20%;
+}
+
+.form-input-neighborhood {
+    width: 60%;
+}
+
+.form-input-phone {
+    width: 35%;
+}
+
+.form-select-payment,
+.form-select-withdrawal {
+    width: 47.5%;
+}
+
+.form-btn-final {
+    margin-top: 20px;
+    width: 30%;
+    height: 55px;
+    background: #4abdac;
+    color: #fff;
+    font-weight: bolder;
+    font-size: 20px;
+    outline: none;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    margin-bottom: 5px;
+}
+
+.form-btn-final:hover {
+    background: #3d8067;
+}
+
+.form-btn-final:focus {
+    background-color: #285242;
+}
+
+.form-warning {
+    width: 90%;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+span {
+    width: auto;
+}
+
+@media(max-width: 650px) {
+    .form-input-name {
+        width: 90%;
+    }
+    .form-address {
+        width: 100%;
+    }
+    .form-input-street {
+        width: 90%;
+    }
+    .form-input-number {
+        width: 26%;
+    }
+    .form-input-phone {
+        width: 90%;
+        text-align: center;
+    }
+    .form-select-payment,
+    .form-select-withdrawal {
+        width: 90%;
+    }
+    .form-btn-final {
+        width: 90%;
+    }
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 
+
 // Importando CSS dos Slider Slick
 import 'slick-carousel/slick/slick.css'; 
 import 'slick-carousel/slick/slick-theme.css';
@@ -25,124 +26,161 @@ import RoupasAcessorios from '../../images/category/clothes.png';
 
 
 export default class SwipeToSlide extends Component {
-  render() {
+    render() {
+        const groupPath = window.location.pathname;
+        const newGroupPath = [];
+        const stringPath = groupPath.split('/');
+                        
+        for(let i = 0; i < stringPath.length; i++){
+            if(i === 1){
+                newGroupPath.push(stringPath[i])
+            } 
+        }
 
-    // Configurações do Slide
-    const settings = {
-        className: "center",
-        infinite: false,
-        centerPadding: "60px",
-        slidesToShow: 5,
-        swipeToSlide: true,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
+        const pathGroup = '/'+newGroupPath.toString();
+        console.log(pathGroup);
+
+        // Configurações do Slide
+        const settings = {
+            className: "center",
+            infinite: false,
+            centerPadding: "60px",
+            slidesToShow: 5,
+            swipeToSlide: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        initialSlide: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                    }
                 }
+            ]
+        };
+
+        // Guardando dados para o slide em um objeto
+        const categorys = [
+            {
+                img: Alimentador,
+                legend: 'Alimentadores e Bebedores',
+                alt: 'Alimentadores e Bebedores',
+                link: pathGroup+'/AlimentadoresBebedores',
             },
             {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
-                }
+                img: AntiPulgas,
+                legend: 'Anti Pulgas e Carrapatos',
+                alt: 'Anti Pulgas e Carrapatos',
+                link: pathGroup+'/AntiPulgasCarrapatos'
             },
             {
-                breakpoint: 480,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1
-                }
+                img: Banho,
+                legend: 'Banho',
+                alt: 'Banho',
+                link: pathGroup+'/Banho',
+            },
+            {
+                img: BanhoTosa,
+                legend: 'Banho e Tosa',
+                alt: 'Banho e Tosa',
+                link: pathGroup+'/BanhoTosa',
+            },
+            {
+                img: Brinquedos,
+                legend: 'Brinquedos',
+                alt: 'Brinquedos',
+                link: pathGroup+'/Brinquedos',
+            },
+            {
+                img: CasasCamas,
+                legend: 'Casas e Camas',
+                alt: 'Casas e Camas',
+                link: pathGroup+'/CasasCamas',
+            },
+            {
+                img: ConsultaVeterinaria,
+                legend: 'Consulta Veterinária',
+                alt: 'Consulta Veterinária',
+                link: pathGroup+'/ConsultaVeterinaria',
+            },
+            {
+                img: ProdutosBanho,
+                legend: 'Produtos para Banho',
+                alt: 'Produtos para Banho',
+                link: pathGroup+'/ProdutosBanho',
+            },
+            {
+                img: Petiscos,
+                legend: 'Petiscos',
+                alt: 'Petiscos',
+                link: pathGroup+'/Petiscos',
+            },
+            {
+                img: Racoes,
+                legend: 'Rações',
+                alt: 'Rações',
+                link: pathGroup+'/Racoes',
+            },
+            {
+                img: Medicamentos,
+                legend: 'Medicamentos',
+                alt: 'Medicamentos',
+                link: pathGroup+'/Medicamentos',
+            },
+            {
+                img: RoupasAcessorios,
+                legend: 'Roupas e Acessórios',
+                alt: 'Roupas e Acessórios',
+                link: pathGroup+'/RoupasAcessorios',
             }
         ]
-    };
 
-    // Guardando dados para o slide em um objeto
-    const categorys = [
-        {
-            img: Alimentador,
-            legend: 'Alimentadores e Bebedores',
-            alt: 'Alimentadores e Bebedores'
-        },
-        {
-            img: AntiPulgas,
-            legend: 'Anti Pulgas e Carrapatos',
-            alt: 'Anti Pulgas e Carrapatos',
-        },
-        {
-            img: Banho,
-            legend: 'Banho',
-            alt: 'Banho'
-        },
-        {
-            img: BanhoTosa,
-            legend: 'Banho e Tosa',
-            alt: 'Banho e Tosa'
-        },
-        {
-            img: Brinquedos,
-            legend: 'Brinquedos',
-            alt: 'Brinquedos'
-        },
-        {
-            img: CasasCamas,
-            legend: 'Casas e Camas',
-            alt: 'Anti Pulgas e Carrapatos'
-        },
-        {
-            img: ConsultaVeterinaria,
-            legend: 'Consulta Veterinária',
-            alt: 'Consulta Veterinária'
-        },
-        {
-            img: ProdutosBanho,
-            legend: 'Produtos para Banho',
-            alt: 'Anti Pulgas e Carrapatos'
-        },
-        {
-            img: Petiscos,
-            legend: 'Petiscos',
-            alt: 'Petiscos'
-        },
-        {
-            img: Racoes,
-            legend: 'Rações',
-            alt: 'Rações'
-        },
-        {
-            img: Medicamentos,
-            legend: 'Medicamentos',
-            alt: 'Medicamentos'
-        },
-        {
-            img: RoupasAcessorios,
-            legend: 'Roupas e Acessórios',
-            alt: 'Roupas e Acessórios'
-        }
-    ]
-
-    return (
-      <div className="slider-slick-container">
-            <Slider {...settings}>
-                {categorys.map((x, i) => {
-                    
-                    return      <Link key={i} to="#" className="slider-slick-items">
-                                    <div className="slider-slick-image">
-                                        <img src={x.img} alt={x.alt}/>
-                                    </div>
-                                    <p className="slider-slick-legend">
-                                        {x.legend}
-                                    </p>
-                                </Link>
-                })}
-        </Slider>
-      </div>
-    );
-  }
+        return (
+        // <div className="slider-container">
+            <div className="slider-slick-container">
+                <Slider {...settings}>
+                    {categorys.map((x, i) => {
+                        return (
+                            <Link to={x.link} key={i} type="button" className="slider-slick-items" >
+                                <div className="slider-slick-image">
+                                    <img src={x.img} alt={x.alt}/>
+                                </div>
+                                <p className="slider-slick-legend">
+                                    {x.legend}
+                                </p>
+                            </Link>
+                        );
+                    })}
+                </Slider>
+            </div>
+            // <div className="title-category">
+            //     {categorys.map((x, i) => { 
+            //         if(x.link == groupPath){
+            //             return (
+            //                 <h1 key={i}>{ x.legend }</h1>
+            //             );
+            //         }
+            //     })}
+            // </div>
+        // </div>
+        
+        );
+    }
 }
 
 

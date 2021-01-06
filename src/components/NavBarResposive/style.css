@@ -1,4 +1,3 @@
-
 .brand {
     display: flex;
     align-items: center;
@@ -27,7 +26,7 @@
     display: block;
 }
 
-span {
+.span-nav {
     background: #ffffff;
     display: block;
     position: relative;

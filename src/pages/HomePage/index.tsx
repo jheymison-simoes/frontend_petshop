@@ -29,28 +29,28 @@ function HomePage(){
                     <h1>Qual é o seu Pet?</h1>
 
                     <div className="options">
-                        <Link to="/listproducts">
+                        <Link to="/Canino/AlimentadoresBebedores">
                             <div className="options-select">
                                 <img id="img-select" src={OptionDog} alt="Cachorro"/>
                                 <p>Cachorro</p>
                             </div>
                         </Link>
 
-                        <Link to="#">
+                        <Link to="/Felino/AlimentadoresBebedores">
                             <div className="options-select">
                                 <img id="img-select" src={OptionCat} alt="Gato"/>
                                 <p>Gato</p>
                             </div>
                         </Link>
 
-                        <Link to="#">
+                        <Link to="/Peixe/AlimentadoresBebedores">
                             <div className="options-select">
                                 <img id="img-select" src={Optionfish} alt="Peixe"/>
                                 <p>Peixe</p>
                             </div>
                         </Link>
 
-                        <Link to="#">
+                        <Link to="/Reptil/AlimentadoresBebedores">
                             <div className="options-select">
                                 <img id="img-select" src={OptionReptile} alt="Réptil"/>
                                 <p>Réptil</p>
@@ -58,14 +58,14 @@ function HomePage(){
                         </Link>
 
 
-                        <Link to="#">
+                        <Link to="/Ave/AlimentadoresBebedores">
                             <div className="options-select">
                                 <img id="img-select" src={OptionBirds} alt="Pássaro"/>
                                 <p>Pássaro</p>
                             </div>
                         </Link>
 
-                        <Link to="#">
+                        <Link to="/Roedor/AlimentadoresBebedores">
                             <div className="options-select">
                                 <img id="img-select" src={OptionRodent} alt="Roedor"/>
                                 <p>Roedor</p>

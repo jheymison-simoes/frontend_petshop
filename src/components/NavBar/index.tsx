@@ -10,6 +10,7 @@ import './style.css';
 import LogoNav from '../../images/options/nav-legs.png';
 
 
+
 function NavBar() {
 
     // Verificando de Está na Home

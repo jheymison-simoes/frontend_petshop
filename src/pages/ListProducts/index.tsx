@@ -1,33 +1,43 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 import Slide from '../../components/SliderSlick';
 import NavBarResponsive from '../../components/NavBarResposive';
-import Products from '../../components/Products';
+import Product from '../../components/Products';
 
 // Importando estilos
 import '../../styles/global.css';
 import './style.css';
 
-class ListProducts extends Component {
+interface Products {
+    id: number;
+    description: string;
+    value: number;
+    image: string;
+};
 
-    state = {
-        navbarOpen: false
+interface IProducts {
+    products: Products[];
+}
+
+function ListProducts() {
+
+    const [navBarOpen, setNavBarOpen] = useState(false);
+
+    function handleNavBar() {
+        if(navBarOpen == true){
+            setNavBarOpen(false);
+        } else {
+            setNavBarOpen(true)
+        } 
     }
 
     
-    
-    handleNavbar = () => {
-        this.setState({ navbarOpen: !this.state.navbarOpen });
-    }
-
-    
-    render() {
         return (
             <div id="list-products">
                 <div className="list-products-nav">
                     <NavBarResponsive 
-                        navbarState={this.state.navbarOpen} 
-                        handleNavbar={this.handleNavbar} 
+                        navbarState={navBarOpen} 
+                        handleNavbar={handleNavBar} 
                     />
                 </div>
 
@@ -40,14 +50,12 @@ class ListProducts extends Component {
                     </div>
                 </div>
 
-                <Products />
-
-                {/* <InfiniteScroll /> */}
-
+                
+                <Product />
                 
             </div>
         )
-    }
+    
 }
 
 export default ListProducts;
