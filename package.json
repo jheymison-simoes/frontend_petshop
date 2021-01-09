@@ -32,7 +32,6 @@
         "react-redux": "^7.2.2",
         "react-responsive-animate-navbar": "^1.1.8",
         "react-responsive-navbar-ts": "^1.0.20",
-        "react-router-dom": "^5.2.0",
         "react-scripts": "^4.0.1",
         "react-simple-hook-modal": "^1.1.0",
         "react-slick": "^0.27.13",
