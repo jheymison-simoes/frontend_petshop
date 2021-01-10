@@ -118,6 +118,19 @@ li:last-child {
         justify-content: space-between;
         min-width: 370px;
         height: 100%;
+        padding: 20px;
+    }
+    .options-select {
+        width: 90%;
+    }
+    #img-select {
+        width: 100%;
+    }
+    .navbar {
+        justify-content: center;
+    }
+    .navbar-logo {
+        display: none;
     }
     .home-background-dir {
         display: none;

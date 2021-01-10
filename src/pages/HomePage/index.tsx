@@ -73,9 +73,10 @@ function HomePage(){
                         </Link>
                     </div>
                 </div>
-
                 <NavBar />
             </div>
+
+            {/* Background */}
             <div className="home-background-dir">
             </div>
         </div>
