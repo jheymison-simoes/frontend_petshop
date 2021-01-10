@@ -1,4 +1,5 @@
 import React, { FormEvent, ChangeEvent, useState } from 'react';
+//@ts-ignore
 import { useHistory } from 'react-router';
 import { MdCloudUpload, MdDoneAll, MdPowerSettingsNew } from 'react-icons/md'
 // import CloudUploadIcon from '';
