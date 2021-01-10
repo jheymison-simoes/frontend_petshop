@@ -3,6 +3,7 @@ import React from 'react';
 //     BrowserRouter as Router,
 //     Switch,
 // } from "react-router-dom";
+//@ts-ignore
 import { BrowserRouter } from 'react-router-dom';
 
 import './styles/global.css';

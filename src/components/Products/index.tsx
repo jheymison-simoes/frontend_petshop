@@ -55,17 +55,14 @@ function Products() {
     const [total, setTotal] = useState(0);
     
     useEffect(() => {
-
             api.get(`products${indexPath}`).then((response) => {
-                
-                
+
                 const status = response.status;
                 console.log(response.data);
 
                 if(status != null){
                     setListProducts(response.data);
                 }
-                
                 
             }).catch(()=> {
                 // console.log(erro.);
@@ -100,7 +97,12 @@ function Products() {
             newListProducts.push(itens !== null ? JSON.parse(itens) : null);
         });
         setTotal(totalValue());
-        openModal();
+        if(newListProducts.length > 0){
+            openModal();
+        } else {
+            alert("Carrinho Vazio!")
+        }
+        
     }
 
     if(listProducts.length <= 0){
