@@ -49,3 +49,9 @@
     transform: rotate(-45deg);
     top: 11px;
 }
+
+@media (max-width:400px) {
+    .brand-title {
+        font-size: 20px;
+    }
+}
