@@ -3,7 +3,7 @@ import React from 'react';
 //     BrowserRouter as Router,
 //     Switch,
 // } from "react-router-dom";
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import './styles/global.css';
 // Teste
@@ -11,9 +11,10 @@ import Routes from './routes';
 
 function App() {
     return (
-        <HashRouter >
+
+        <BrowserRouter>
             <Routes />
-        </HashRouter>
+        </BrowserRouter>
     );
 }
 
