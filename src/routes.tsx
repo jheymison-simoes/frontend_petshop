@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory, useLocation } from 'react-router'
+import { useHistory, useLocation } from 'react-router';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Importando Paginas
@@ -44,9 +44,9 @@ function Routes() {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={HomePage} />
-                <Route path="/admin" exact component={Admin} />
-                <Route path="/adminController" exact component={AdminController} />
-                <Route path="/checkout" exact component={Checkout} />
+                <Route path="/admin" component={Admin} />
+                <Route path="/adminController" component={AdminController} />
+                <Route path="/checkout" component={Checkout} />
                 <Route path="/Canino" component={ListProducts} />
                 <Route path="/Felino" component={ListProducts} />
                 <Route path="/Peixe" component={ListProducts} />

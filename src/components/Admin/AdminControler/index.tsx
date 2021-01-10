@@ -24,7 +24,7 @@ function AdminControler(){
         }
         const fileImport = Array.from(event.target.files);
 
-        if(fileImport[0].type != "application/vnd.ms-excel"){
+        if(fileImport[0].type !== "application/vnd.ms-excel"){
             alert("Formato de Arquivo não Aceito!");
         } else {
             setFile(fileImport);

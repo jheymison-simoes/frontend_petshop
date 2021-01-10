@@ -18,10 +18,6 @@ import LogoNav from "../../images/logo-checkout.png";
 interface TextMaskCustomProps {
     inputRef: (ref: HTMLInputElement | null) => void;
 }
-
-interface State {
-    textmask: string;
-}
   
 // Customização dos Inputs
 const CssTextField = withStyles({
