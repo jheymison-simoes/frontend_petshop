@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
+// @ts-ignore
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import api from '../../../services/api';
