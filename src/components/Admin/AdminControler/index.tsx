@@ -1,4 +1,5 @@
 import React, { FormEvent, ChangeEvent, useState } from 'react';
+import Swal from "sweetalert2";
 //@ts-ignore
 import { useHistory } from 'react-router';
 import { MdCloudUpload, MdDoneAll, MdPowerSettingsNew } from 'react-icons/md'
@@ -19,16 +20,41 @@ function AdminControler(){
     const userName = localStorage.getItem("userName");
     const history = useHistory();
 
+    function arquiveInvalidFormat() {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Este formato de arquivo não é aceito. Formato aceito ".csv"!',
+        });
+    }
+
+    function arquiveNull() {
+        Swal.fire({
+            icon: 'info',
+            title: 'Oops...',
+            text: 'Nenhum arquivo foi selecionado!',
+        });
+    }
+
+    function importSuccess() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Oba...',
+            text: 'Dados importados com Sucesso!',
+        });
+    }
+
     function handleSelectedFile(event: ChangeEvent<HTMLInputElement>){
         if(!event.target.files){
             return;
         }
+        
         const fileImport = Array.from(event.target.files);
 
         if(fileImport[0].type !== "application/vnd.ms-excel"){
-            alert("Formato de Arquivo não Aceito!");
+            arquiveInvalidFormat();
         } else {
-            setFile(fileImport);
+            setFile(fileImport);   
         }   
     }
     
@@ -44,9 +70,10 @@ function AdminControler(){
         if(file.length > 0){
             data.append('arquives', file[0]);
             await api.post('uploads', data);
-            alert("Produtos importados com Sucesso!");
+            // alert("Produtos importados com Sucesso!");
+            importSuccess();
         } else {
-            alert('Campo Upload Vazio!');
+            arquiveNull();
         }
     }
 

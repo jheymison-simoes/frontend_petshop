@@ -6,6 +6,7 @@ import {
     useModal,
     ModalTransition,
 } from "react-simple-hook-modal";
+import Swal from "sweetalert2";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { MdClose, MdDeleteForever, MdShoppingCart } from "react-icons/md";
 
@@ -24,7 +25,7 @@ interface listProducts {
     image: string;
     count: number;
     subtotal: number;
-}
+};
 
 const titles = [
     {title: "Alimentadores e Bebedores", link: "AlimentadoresBebedores"},
@@ -39,7 +40,9 @@ const titles = [
     {title: "Rações", link: "Racoes"},
     {title: "Medicamentos", link: "Medicamentos"},
     {title: "Roupas e Acessórios", link: "RoupasAcessorios"},
-]
+];
+
+
 
 function Products() {
     const groupLocation = useLocation();
@@ -72,7 +75,13 @@ function Products() {
         
     }, [indexPath]);
 
-    console.log(listProducts);
+    function carrinhoVazio() {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Seu Carrinho está Vazio!',
+        });
+    }
 
     function totalItens(){
         var itens = 0;
@@ -100,7 +109,8 @@ function Products() {
         if(newListProducts.length > 0){
             openModal();
         } else {
-            alert("Carrinho Vazio!")
+            // alert("Carrinho Vazio!");
+            carrinhoVazio();
         }
         
     }

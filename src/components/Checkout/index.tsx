@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
 import MaskedInput from 'react-text-mask';
@@ -101,6 +102,7 @@ function Checkout() {
     const [phone, setPhone] = useState({
         phonemask: '( )    -    ',
     });
+
     const handleChangePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPhone({
             ...phone,
@@ -294,7 +296,6 @@ function Checkout() {
                                     <MenuItem value="Retirada na Loja">Retirada na Loja</MenuItem>
                                 </CssSelect>
                             </FormControl>
-
                         </div>
 
                         <button 
@@ -303,8 +304,7 @@ function Checkout() {
                         >
                             Enviar Pedido
                         </button>
-                        <p className="form-warning">*Voce Será redirecionado ao Whatsapp para o vendedor confirmar o pedido!</p>
-
+                        <p className="form-warning">*Voce Será redirecionado ao Whatsapp para o vendedor confirmar o pedido!</p> 
                     </form>
             </div>
         </div>

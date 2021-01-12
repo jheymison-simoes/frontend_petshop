@@ -27,15 +27,16 @@ const Navbar = (props: any) => {
                 <Brand />
                 <NavLinks style={linkAnimation}>
                     <Link to="/" >Home</Link>
-                    <Link to="/" >Sobre</Link>
-                    <Link to="/" >Contatos</Link>
-                    <Link to="/" >Produtos</Link>
-                    <Link to="/" >Serviços</Link>
+                    <a href="https://vitrinedosanimais.com.br/sobre-n%C3%B3s" target="_blanck">Sobre</a>
+                    <a href="https://vitrinedosanimais.com.br/contato" target="_blanck">Contatos</a>
+                    <a href="https://vitrinedosanimais.com.br/servi%C3%A7os-%2F-produtos" target="_blanck">Produtos</a>
+                    <a href="https://vitrinedosanimais.com.br/servi%C3%A7os-%2F-produtos" target="_blanck">Serviços</a>
+                    <a href="https://vitrinedosanimais.com.br/in%C3%ADcio" target="_blanck">Lojas</a>
                 </NavLinks>
                 <BurgerWrapper>
                     <BurgerMenu
-                    navbarState={props.navbarState} 
-                    handleNavbar={props.handleNavbar}
+                        navbarState={props.navbarState} 
+                        handleNavbar={props.handleNavbar}
                     />
                 </BurgerWrapper>
                 </FlexContainer>

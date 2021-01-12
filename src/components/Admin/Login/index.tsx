@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
+import Swal from "sweetalert2";
 // @ts-ignore
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -65,6 +66,14 @@ function Login() {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
 
+    function loginFail() {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Usuário inexistente ou dados incorretos!',
+        });
+    }
+
     async function handleSubmit(event: FormEvent){
         event.preventDefault();
 
@@ -74,7 +83,6 @@ function Login() {
         };
 
         try {
-
             const response = await api.post('usersAuthenticate', data);
             const userName = response.data.result[0].user;
             const userToken = response.data.result[0].token;
@@ -84,7 +92,9 @@ function Login() {
             history.push('/adminController');
 
         } catch (err) {
-            console.log("Falha no Login!");
+            // console.log("Falha no Login!");
+            // alert("Falha!");
+            loginFail();
         }
     }
 

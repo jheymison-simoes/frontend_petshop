@@ -19,12 +19,12 @@ function CollapseMenu(props: any){
                 }}
             >
                 <NavLinks>
-                    <li><Link to="/" onClick={props.handleNavbar}>Home</Link></li>
-                    <li><Link to="/" onClick={props.handleNavbar}>Sobre</Link></li>
-                    <li><Link to="/" onClick={props.handleNavbar}>Contatos</Link></li>
-                    <li><Link to="/" onClick={props.handleNavbar}>Produtos</Link></li>
-                    <li><Link to="/" onClick={props.handleNavbar}>Serviços</Link></li>
-                    <li><Link to="/" onClick={props.handleNavbar}>Lojas</Link></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><a href="https://vitrinedosanimais.com.br/sobre-n%C3%B3s" target="_blanck">Sobre</a></li>
+                    <li><a href="https://vitrinedosanimais.com.br/contato" target="_blanck">Contatos</a></li>
+                    <li><a href="https://vitrinedosanimais.com.br/servi%C3%A7os-%2F-produtos" target="_blanck">Produtos</a></li>
+                    <li><a href="https://vitrinedosanimais.com.br/servi%C3%A7os-%2F-produtos" target="_blanck">Serviços</a></li>
+                    <li><a href="https://vitrinedosanimais.com.br/in%C3%ADcio" target="_blanck">Lojas</a></li>
                 </NavLinks>
             </CollapseWrapper>
 

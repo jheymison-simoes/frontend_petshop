@@ -88,18 +88,18 @@ export default class SwipeToSlide extends Component {
                 alt: 'Anti Pulgas e Carrapatos',
                 link: pathGroup+'/AntiPulgasCarrapatos'
             },
-            {
-                img: Banho,
-                legend: 'Banho',
-                alt: 'Banho',
-                link: pathGroup+'/Banho',
-            },
-            {
-                img: BanhoTosa,
-                legend: 'Banho e Tosa',
-                alt: 'Banho e Tosa',
-                link: pathGroup+'/BanhoTosa',
-            },
+            // {
+            //     img: Banho,
+            //     legend: 'Banho',
+            //     alt: 'Banho',
+            //     link: pathGroup+'/Banho',
+            // },
+            // {
+            //     img: BanhoTosa,
+            //     legend: 'Banho e Tosa',
+            //     alt: 'Banho e Tosa',
+            //     link: pathGroup+'/BanhoTosa',
+            // },
             {
                 img: Brinquedos,
                 legend: 'Brinquedos',
@@ -112,12 +112,12 @@ export default class SwipeToSlide extends Component {
                 alt: 'Casas e Camas',
                 link: pathGroup+'/CasasCamas',
             },
-            {
-                img: ConsultaVeterinaria,
-                legend: 'Consulta Veterinária',
-                alt: 'Consulta Veterinária',
-                link: pathGroup+'/ConsultaVeterinaria',
-            },
+            // {
+            //     img: ConsultaVeterinaria,
+            //     legend: 'Consulta Veterinária',
+            //     alt: 'Consulta Veterinária',
+            //     link: pathGroup+'/ConsultaVeterinaria',
+            // },
             {
                 img: ProdutosBanho,
                 legend: 'Produtos para Banho',
@@ -168,17 +168,6 @@ export default class SwipeToSlide extends Component {
                     })}
                 </Slider>
             </div>
-            // <div className="title-category">
-            //     {categorys.map((x, i) => { 
-            //         if(x.link == groupPath){
-            //             return (
-            //                 <h1 key={i}>{ x.legend }</h1>
-            //             );
-            //         }
-            //     })}
-            // </div>
-        // </div>
-        
         );
     }
 }

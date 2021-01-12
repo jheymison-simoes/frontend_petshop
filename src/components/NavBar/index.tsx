@@ -33,11 +33,11 @@ function NavBar() {
                 </div>
             </div>
             <ul className="navbar-ul">
-                <li><Link className="navbar-a" to="#">Sobre</Link></li>
-                <li><Link className="navbar-a" to="#">Serviços</Link></li>
-                <li><Link className="navbar-a" to="#">Contatos</Link></li>
-                <li><Link className="navbar-a" to="#">Produtos</Link></li>
-                <li><Link className="navbar-a" to="#">Lojas</Link></li>
+                <li><a className="navbar-a" href="https://vitrinedosanimais.com.br/sobre-n%C3%B3s" target="_blanck">Sobre</a></li>
+                <li><a className="navbar-a" href="https://vitrinedosanimais.com.br/servi%C3%A7os-%2F-produtos" target="_blanck">Serviços</a></li>
+                <li><a className="navbar-a" href="https://vitrinedosanimais.com.br/contato" target="_blanck">Contatos</a></li>
+                <li><a className="navbar-a" href="https://vitrinedosanimais.com.br/servi%C3%A7os-%2F-produtos" target="_blanck">Produtos</a></li>
+                <li><a className="navbar-a" href="https://vitrinedosanimais.com.br/in%C3%ADcio" target="_blanck">Lojas</a></li>
             </ul>
         </nav>
     );
