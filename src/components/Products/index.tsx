@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-    ModalProvider,
-    Modal,
-    useModal,
-    ModalTransition,
-} from "react-simple-hook-modal";
+import { ModalProvider, Modal, useModal, ModalTransition } from "react-simple-hook-modal";
 import Swal from "sweetalert2";
+import Loader from 'react-loader-spinner'
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { MdClose, MdDeleteForever, MdShoppingCart } from "react-icons/md";
 
@@ -42,8 +38,6 @@ const titles = [
     {title: "Roupas e Acessórios", link: "RoupasAcessorios"},
 ];
 
-
-
 function Products() {
     const groupLocation = useLocation();
     const stringPath = groupLocation.pathname.split('/');
@@ -56,23 +50,23 @@ function Products() {
     const [newCount, setNewCount] = useState(1);
     const [deleteButton, setDeleteButton] = useState(false);
     const [total, setTotal] = useState(0);
+    const [loading, setLoading] = useState(false);
     
     useEffect(() => {
-            api.get(`products${indexPath}`).then((response) => {
-
+        async function getApiProducts() {
+            setLoading(true);
+            await api.get(`products${indexPath}`).then( (response) => {
                 const status = response.status;
-                console.log(response.data);
-
+    
                 if(status != null){
                     setListProducts(response.data);
                 }
-                
             }).catch(()=> {
-                // console.log(erro.);
                 setListProducts([]);
             });
-        
-        
+            setLoading(false);
+        }
+        getApiProducts();
     }, [indexPath]);
 
     function carrinhoVazio() {
@@ -80,6 +74,8 @@ function Products() {
             icon: 'warning',
             title: 'Oops...',
             text: 'Seu Carrinho está Vazio!',
+            confirmButtonColor: '#4abdac',
+            iconColor: '#4abdac',
         });
     }
 
@@ -100,23 +96,21 @@ function Products() {
     }
 
     function Comprar() {
+
         // Listando os Produtos no Session Storage e guardando em um Array
         Object.keys(sessionStorage).forEach(function (key) {
             const itens = sessionStorage.getItem(key);
             newListProducts.push(itens !== null ? JSON.parse(itens) : null);
         });
+
         setTotal(totalValue());
+
         if(newListProducts.length > 0){
             openModal();
         } else {
-            // alert("Carrinho Vazio!");
             carrinhoVazio();
         }
         
-    }
-
-    if(listProducts.length <= 0){
-        console.log("Vazio");
     }
 
     function ModalClose() {
@@ -152,63 +146,69 @@ function Products() {
                 </div>
             </div>
             <div className="center-products">
-                {listProducts.length == 0 ?
-                    <div className="center-products-clear">Desculpe-me, no momento estamos sem este produto!</div>
-                    :
-                    listProducts.map((product, i) => {
-                        async function Comprar() {
-                            const listsProductsNew = {
-                                id: product.id,
-                                image: product.image,
-                                description: product.description,
-                                amount: product.amount,
-                                value: Number(product.value),
-                                count: 1,
-                                subtotal: Number(product.value)
-                            };
+                                
+                {loading == true ?    
+                    <Loader className="loadingProducts" type="Puff" color="#4abdac" height={50} width={50} timeout={3000} />
+                :
+                    <>
+                        {listProducts.length == 0 ?   
+                            <div className="center-products-clear">Desculpe-me, no momento estamos sem este produto!</div>
+                        :
+                            listProducts.map((product, i) => {
+                                async function Comprar() {
+                                    const listsProductsNew = {
+                                        id: product.id,
+                                        image: product.image,
+                                        description: product.description,
+                                        amount: product.amount,
+                                        value: Number(product.value),
+                                        count: 1,
+                                        subtotal: Number(product.value)
+                                    };
 
-                            // Adicionando Produtos no Session Storage
-                            const itens = sessionStorage.setItem(
-                                product.id.toString(),
-                                JSON.stringify(listsProductsNew)
-                            );
+                                    // Adicionando Produtos no Session Storage
+                                    const itens = sessionStorage.setItem(
+                                        product.id.toString(),
+                                        JSON.stringify(listsProductsNew)
+                                    );
 
-                            // Listando os Produtos no Session Storage e guardando em um Array
-                            Object.keys(sessionStorage).forEach(function (key) {
-                                const itens = sessionStorage.getItem(key);
-                                newListProducts.push(itens !== null ? JSON.parse(itens) : null);
-                                setNewListProducts(newListProducts);
-                            });
-                            const total = totalValue();
-                            setTotal(total);
-                            localStorage.setItem("Valor Total: ", total.toString());
-                            await openModal();
-                        }
+                                    // Listando os Produtos no Session Storage e guardando em um Array
+                                    Object.keys(sessionStorage).forEach(function (key) {
+                                        const itens = sessionStorage.getItem(key);
+                                        newListProducts.push(itens !== null ? JSON.parse(itens) : null);
+                                        setNewListProducts(newListProducts);
+                                    });
+                                    const total = totalValue();
+                                    setTotal(total);
+                                    localStorage.setItem("Valor Total: ", total.toString());
+                                    await openModal();
+                                }
 
-                        
-                        return (
-                            <div className="products" key={product.id}>
-                                <div className="products-background">
-                                    <img
-                                        src={product.image}
-                                        alt="Comedouro para Cachorro"
-                                        className="img-products"
-                                    />
-                                    <div className="description-products">
-                                        {product.description}
+                                return (
+                                    <div className="products" key={product.id}>
+                                        <div className="products-background">
+                                            <img
+                                                src={product.image}
+                                                alt="Comedouro para Cachorro"
+                                                className="img-products"
+                                            />
+                                            <div className="description-products">
+                                                {product.description}
+                                            </div>
+                                            <div className="value-products">R$ {product.value.toString().replace(".", ",")}</div>
+                                            <button
+                                                id={product.id.toString()}
+                                                className="btn-products" 
+                                                onClick={ Comprar }
+                                            >
+                                                Adicionar ao Carrinho
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div className="value-products">R$ {product.value.toString().replace(".", ",")}</div>
-                                    <button
-                                        id={product.id.toString()}
-                                        className="btn-products" 
-                                        onClick={ Comprar }
-                                    >
-                                        Adicionar ao Carrinho
-                                    </button>
-                                </div>
-                            </div>
-                        );
-                    })
+                                );
+                            })                                         
+                        }
+                    </>
                 }
             </div>
 
@@ -257,12 +257,12 @@ function Products() {
                                             } else {
                                                 listProduct.count = listProduct.count + 1;
                                             }
+
                                             listProduct.subtotal = listProduct.value * listProduct.count;
                                             objetcItem.count = listProduct.count;
                                             objetcItem.subtotal = listProduct.value * listProduct.count;
                                             sessionStorage.setItem(key, JSON.stringify(objetcItem));
                                             const total = totalValue();
-                                            console.log(total);
                                             setTotal(total);
                                             localStorage.setItem("Valor Total: ", total.toString());
                                             return setNewCount(listProduct.count);
@@ -279,7 +279,6 @@ function Products() {
                                                 objetcItem.subtotal = listProduct.value * listProduct.count;
                                                 sessionStorage.setItem(key, JSON.stringify(objetcItem));
                                                 const total = totalValue();
-                                                console.log(total);
                                                 setTotal(total);
                                                 localStorage.setItem("Valor Total: ", total.toString());
                                                 return setNewCount(listProduct.count);

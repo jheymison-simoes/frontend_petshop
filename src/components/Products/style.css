@@ -53,6 +53,12 @@
     justify-content: flex-start;
 }
 
+.loadingProducts {
+    width: 50px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
 .center-products-clear {
     margin: 50px auto;
     font-size: 25px;
@@ -127,6 +133,7 @@
 
 @media(max-width: 650px) {
     .list-products-top {
+        flex-direction: column;
         justify-content: center;
         text-align: center;
     }
