@@ -100,7 +100,9 @@ function Products() {
     function totalItens(){
         var itens = 0;
         for(let i = 0; i < sessionStorage.length; i++){
-            itens++
+            if(sessionStorage.key(i) !== "ValorTotal"){
+                itens++;
+            }   
         }
         return itens;
     }
@@ -113,12 +115,16 @@ function Products() {
         return total;
     }
 
+    console.log(newListProducts);
+
     // Listando os Produtos no Session Storage e guardando em um Array
     function addCartButton() {
         
         Object.keys(sessionStorage).forEach(function (key) {
-            const itens = sessionStorage.getItem(key);
-            newListProducts.push(itens !== null ? JSON.parse(itens) : null);
+            if(key !== "ValorTotal"){
+                const itens = sessionStorage.getItem(key);
+                newListProducts.push(itens !== null ? JSON.parse(itens) : null);
+            }
         });
 
         setTotal(totalValue());
@@ -192,9 +198,11 @@ function Products() {
                                 // Listando os Produtos no Session Storage e guardando em um Array
                                 function addArrayProducts(){
                                     Object.keys(sessionStorage).forEach(function (key) {
-                                        const itens = sessionStorage.getItem(key);
-                                        newListProducts.push(itens !== null ? JSON.parse(itens) : null);
-                                        setNewListProducts(newListProducts);
+                                        if(key !== "ValorTotal"){
+                                            const itens = sessionStorage.getItem(key);
+                                            newListProducts.push(itens !== null ? JSON.parse(itens) : null);
+                                            setNewListProducts(newListProducts);
+                                        }
                                     });
                                 }
 
@@ -204,7 +212,7 @@ function Products() {
                                         addArrayProducts();
                                         const total = totalValue();
                                         setTotal(total);
-                                        localStorage.setItem("Valor Total: ", total.toString());
+                                        sessionStorage.setItem("ValorTotal", total.toString());
                                         return await openModal();
                                     } else {
                                         return itensIguais();
@@ -292,7 +300,7 @@ function Products() {
                                             sessionStorage.setItem(key, JSON.stringify(objetcItem));
                                             const total = totalValue();
                                             setTotal(total);
-                                            localStorage.setItem("Valor Total: ", total.toString());
+                                            sessionStorage.setItem("ValorTotal", total.toString());
                                             return setNewCount(listProduct.count);
                                         }
 
@@ -308,7 +316,7 @@ function Products() {
                                                 sessionStorage.setItem(key, JSON.stringify(objetcItem));
                                                 const total = totalValue();
                                                 setTotal(total);
-                                                localStorage.setItem("Valor Total: ", total.toString());
+                                                sessionStorage.setItem("ValorTotal", total.toString());
                                                 return setNewCount(listProduct.count);
                                             }
                                         }
@@ -321,15 +329,15 @@ function Products() {
                                             sessionStorage.removeItem(key);
                                             newListProducts.splice(i, 1);
 
+                                            const total = totalValue();
+                                            setTotal(total);
+                                            sessionStorage.setItem("ValorTotal", total.toString());
+
                                             if(newListProducts.length <= 0){
                                                 sessionStorage.clear();
                                                 closeModal();
                                             }
                                             
-                                            const total = totalValue();
-                                            setTotal(total);
-                                            localStorage.setItem("Valor Total: ", total.toString());
-
                                             return await itemDeletado();
                                         }
 

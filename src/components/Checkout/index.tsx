@@ -261,7 +261,7 @@ function Checkout() {
                                 required
                             />
 
-                            <FormControl variant="outlined" className={classes.formControl + " form-select-payment"}>
+                            <FormControl variant="outlined" className={classes.formControl + " form-select-payment"} required>
                                 <InputLabel id="demo-simple-select-outlined-label">Forma de Pagamento</InputLabel>
                                 <CssSelect
                                     labelId="demo-simple-select-outlined-label"
@@ -269,17 +269,14 @@ function Checkout() {
                                     label="Forma de Pagamento"
                                     value={payment}
                                     onChange={handleChangeSelectPayment}
-                                    required
+                                    
                                 >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
                                     <MenuItem value="Cartão">Cartão Débito / Crédito</MenuItem>
                                     <MenuItem value="Dinheiro">Dinheiro</MenuItem>
                                 </CssSelect>
                             </FormControl>
 
-                            <FormControl variant="outlined" className={classes.formControl + " form-select-withdrawal"}>
+                            <FormControl variant="outlined" className={classes.formControl + " form-select-withdrawal"} required>
                                 <InputLabel id="demo-simple-select-outlined-label">Forma de Retirada</InputLabel>
                                 <CssSelect
                                     labelId="demo-simple-select-outlined-label"
@@ -287,11 +284,8 @@ function Checkout() {
                                     value={withdrawal}
                                     onChange={handleChangeSelectWithdrawal}
                                     label="Forma de Retirada"
-                                    required
+                                    
                                 >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
                                     <MenuItem value="Entrega">Entrega</MenuItem>
                                     <MenuItem value="Retirada na Loja">Retirada na Loja</MenuItem>
                                 </CssSelect>

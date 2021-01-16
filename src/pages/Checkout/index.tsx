@@ -20,12 +20,6 @@ function CheckoutPage(){
 
     return (
         <>
-            {/* <div className="component-navbar">
-                <NavBarResponsive 
-                    navbarState={navBarOpen} 
-                    handleNavbar={handleNavBar} 
-                />
-            </div> */}
             
             <div className="component-checkout">
                 <Checkout />
