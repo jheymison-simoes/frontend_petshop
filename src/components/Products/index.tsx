@@ -48,7 +48,7 @@ function Products() {
     const [listProducts, setListProducts] = useState<listProducts[]>([]);
     const [newListProducts, setNewListProducts] = useState<listProducts[]>([]);
     const [newCount, setNewCount] = useState(1);
-    const [deleteButton, setDeleteButton] = useState(false);
+    // const [deleteButton, setDeleteButton] = useState(false);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
     
@@ -79,6 +79,24 @@ function Products() {
         });
     }
 
+    function itensIguais() {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Este produto já foi adicionado ao carrinho!',
+            confirmButtonColor: '#4abdac',
+        });
+    }
+
+    function itemDeletado() {
+        Swal.fire({
+            icon: 'question',
+            title: 'Compre Mais...',
+            text: 'Produto retirado do carrinho!',
+            confirmButtonColor: '#4abdac',
+        });
+    }
+
     function totalItens(){
         var itens = 0;
         for(let i = 0; i < sessionStorage.length; i++){
@@ -95,22 +113,20 @@ function Products() {
         return total;
     }
 
-    function Comprar() {
-
-        // Listando os Produtos no Session Storage e guardando em um Array
+    // Listando os Produtos no Session Storage e guardando em um Array
+    function addCartButton() {
+        
         Object.keys(sessionStorage).forEach(function (key) {
             const itens = sessionStorage.getItem(key);
             newListProducts.push(itens !== null ? JSON.parse(itens) : null);
         });
 
         setTotal(totalValue());
-
         if(newListProducts.length > 0){
             openModal();
         } else {
             carrinhoVazio();
         }
-        
     }
 
     function ModalClose() {
@@ -138,7 +154,7 @@ function Products() {
                 </div>
 
                 <div className="list-products-products-group">
-                    <button className="list-products-top-btn" type="button" onClick={ Comprar }>
+                    <button className="list-products-top-btn" type="button" onClick={ addCartButton }>
                         <MdShoppingCart />
                         Meu Carrinho
                     </button>
@@ -154,52 +170,65 @@ function Products() {
                         {listProducts.length == 0 ?   
                             <div className="center-products-clear">Desculpe-me, no momento estamos sem este produto!</div>
                         :
-                            listProducts.map((product, i) => {
-                                async function Comprar() {
-                                    const listsProductsNew = {
-                                        id: product.id,
-                                        image: product.image,
-                                        description: product.description,
-                                        amount: product.amount,
-                                        value: Number(product.value),
-                                        count: 1,
-                                        subtotal: Number(product.value)
-                                    };
+                            listProducts.map(product => {
+                                const listsProductsNew = {
+                                    id: product.id,
+                                    image: product.image,
+                                    description: product.description,
+                                    amount: product.amount,
+                                    value: Number(product.value),
+                                    count: 1,
+                                    subtotal: Number(product.value)
+                                };
 
-                                    // Adicionando Produtos no Session Storage
-                                    const itens = sessionStorage.setItem(
+                                // Adiciona produto no Session Storage
+                                function addSession(){
+                                    sessionStorage.setItem(
                                         product.id.toString(),
                                         JSON.stringify(listsProductsNew)
                                     );
+                                }
 
-                                    // Listando os Produtos no Session Storage e guardando em um Array
+                                // Listando os Produtos no Session Storage e guardando em um Array
+                                function addArrayProducts(){
                                     Object.keys(sessionStorage).forEach(function (key) {
                                         const itens = sessionStorage.getItem(key);
                                         newListProducts.push(itens !== null ? JSON.parse(itens) : null);
                                         setNewListProducts(newListProducts);
                                     });
-                                    const total = totalValue();
-                                    setTotal(total);
-                                    localStorage.setItem("Valor Total: ", total.toString());
-                                    await openModal();
+                                }
+
+                                async function addCart() {
+                                    if(!sessionStorage.getItem(product.id.toString())){
+                                        addSession();
+                                        addArrayProducts();
+                                        const total = totalValue();
+                                        setTotal(total);
+                                        localStorage.setItem("Valor Total: ", total.toString());
+                                        return await openModal();
+                                    } else {
+                                        return itensIguais();
+                                    }
                                 }
 
                                 return (
-                                    <div className="products" key={product.id}>
+                                    <div className="products" key={listsProductsNew.id}>
                                         <div className="products-background">
                                             <img
-                                                src={product.image}
+                                                src={listsProductsNew.image}
                                                 alt="Comedouro para Cachorro"
                                                 className="img-products"
                                             />
                                             <div className="description-products">
-                                                {product.description}
+                                                {listsProductsNew.description}
                                             </div>
-                                            <div className="value-products">R$ {product.value.toString().replace(".", ",")}</div>
+                                            <div className="value-products">
+                                                R$ {listsProductsNew.value.toFixed(2).toString().replace(".", ",")}
+                                            </div>
                                             <button
-                                                id={product.id.toString()}
+                                                id={listsProductsNew.id.toString()}
                                                 className="btn-products" 
-                                                onClick={ Comprar }
+                                                onClick={ addCart }
                                             >
                                                 Adicionar ao Carrinho
                                             </button>
@@ -250,8 +279,7 @@ function Products() {
                                         const subTotal = objetcItem.subtotal.toFixed(2).toString().replace(".", ",");
                                         
                                         
-                                        function Increment(){
-                                            
+                                        function Increment(){ 
                                             if(listProduct.count >= listProduct.amount){
                                                 listProduct.count = listProduct.amount;
                                             } else {
@@ -289,7 +317,7 @@ function Products() {
                                             setNewCount(listProduct.count);
                                         }
 
-                                        function DeleteItem () {
+                                        async function DeleteItem () {
                                             sessionStorage.removeItem(key);
                                             newListProducts.splice(i, 1);
 
@@ -298,16 +326,11 @@ function Products() {
                                                 closeModal();
                                             }
                                             
-                                            if(deleteButton == false){
-                                                setDeleteButton(true);
-                                            } else {
-                                                setDeleteButton(false);
-                                            }
-
                                             const total = totalValue();
                                             setTotal(total);
                                             localStorage.setItem("Valor Total: ", total.toString());
 
+                                            return await itemDeletado();
                                         }
 
                                         return (

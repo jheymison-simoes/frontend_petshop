@@ -156,25 +156,25 @@ function Checkout() {
             var subtotal = value.subtotal;
             var formatSubtotal = subtotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
             var header = i == 0 ? "Meu(s) Pedido(s):\n--------------------\n\n" : "";
-            var pedidos = "Produto: "+ produto + "\n" + 
-                       "Quantidade: " + qtd + "\n" + 
-                       "Subtotal: " + formatSubtotal + "\n" +
-                       "--------------------"+"\n";
+            var pedidos =   "*Produto*: "+ produto + "\n" + 
+                            "*Quantidade*: " + qtd + "\n" + 
+                            "*Subtotal*: " + formatSubtotal + "\n" +
+                            "--------------------"+"\n";
             // console.log(text); 
             var dadosCliente = "";
             if(sizeSession == i + 1){
                 dadosCliente = "\n--------------------\n" +
-                               "\nValor Total: " + formatValueTotal + "\n" +
+                               "\n*_Valor Total_*: " + formatValueTotal + "\n" +
                                "\n--------------------\n" +
-                               "\nDados do Cliente:\n" +
-                               "Nome: " + dados.nome + "\n" +
-                               "Telefone: " + dados.telefone.phonemask + "\n" +
-                               "Endereço: \n" +
-                               "Rua / Av.: " + dados.rua + "\n" +
-                               "Numero: " + dados.numero + "\n" +
-                               "Bairro: " + dados.bairro + "\n" +
-                               "Forma de Pagamento: " + dados["forma de ragamento"] + "\n" +
-                               "Forma de Retirada: " + dados["forma de retirada"] + "\n";
+                               "\n*Dados do Cliente*:\n" +
+                               "*Nome*: " + dados.nome + "\n" +
+                               "*Telefone*: " + dados.telefone.phonemask + "\n" +
+                               "*Endereço*: \n" +
+                               "*Rua / Av.*: " + dados.rua + "\n" +
+                               "*Número*: " + dados.numero + "\n" +
+                               "*Bairro*: " + dados.bairro + "\n" +
+                               "*Forma de Pagamento*: " + dados["forma de ragamento"] + "\n" +
+                               "*Forma de Retirada*: " + dados["forma de retirada"] + "\n";
                 
             }
 
