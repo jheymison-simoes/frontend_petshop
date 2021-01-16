@@ -114,6 +114,15 @@ li:last-child {
     background-color: #4ABDAC;
 }
 
+@media (max-width:700px) {
+    .home-background-dir {
+        display: none;
+    }
+    .home-options {
+        margin: 0 auto;
+    }
+}
+
 @media (max-width:400px) {
     .home-options {
         justify-content: space-between;
