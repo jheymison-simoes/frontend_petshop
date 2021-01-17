@@ -115,8 +115,6 @@ function Products() {
         return total;
     }
 
-    console.log(newListProducts);
-
     // Listando os Produtos no Session Storage e guardando em um Array
     function addCartButton() {
         

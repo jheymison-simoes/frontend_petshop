@@ -38,7 +38,6 @@ export default class SwipeToSlide extends Component {
         }
 
         const pathGroup = '/'+newGroupPath.toString();
-        console.log(pathGroup);
 
         // Configurações do Slide
         const settings = {
