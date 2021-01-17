@@ -19,6 +19,15 @@ import LogoNav from "../../images/logo-checkout.png";
 interface TextMaskCustomProps {
     inputRef: (ref: HTMLInputElement | null) => void;
 }
+console.log(window.location.pathname);
+
+function noCheckout(){
+    if(sessionStorage.length == 0 && window.location.pathname == "/checkout"){
+        window.location.replace("/");
+    }
+}
+noCheckout();
+
   
 // Customização dos Inputs
 const CssTextField = withStyles({
