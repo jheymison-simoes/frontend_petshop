@@ -129,7 +129,7 @@ function Checkout() {
             "numero": number,
             "bairro": neighborhood,
             "telefone": phone,
-            "forma de ragamento": payment,
+            "forma de Pagamento": payment,
             "forma de retirada": withdrawal
         }
 
@@ -137,15 +137,19 @@ function Checkout() {
 
         const destinyPhone = "5534996751548";
 
-        const sizeSession = sessionStorage.length;
-        const valueTotal = localStorage.getItem("Valor Total: ");
+        const sizeSession = sessionStorage.length - 1;
+        const valueTotal = sessionStorage.getItem("ValorTotal");
         const formatValueTotal = Number(valueTotal).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
         console.log(formatValueTotal);
+
         var listProducts: any = [];
         Object.keys(sessionStorage).forEach(function (key) {
-            const itens = sessionStorage.getItem(key);
-            const formatItens = itens != null ? JSON.parse(itens) : null;
-            listProducts.push(formatItens);
+            if(key !== "ValorTotal"){
+                const itens = sessionStorage.getItem(key);
+                const formatItens = itens != null ? JSON.parse(itens) : null;
+                listProducts.push(formatItens);
+            }
+            
         });
 
         var arrayPedido: any = [];
@@ -155,13 +159,18 @@ function Checkout() {
             var qtd = value.count;
             var subtotal = value.subtotal;
             var formatSubtotal = subtotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-            var header = i == 0 ? "Meu(s) Pedido(s):\n--------------------\n\n" : "";
+            var header = "";
+            var dadosCliente = "";
+
+            if(i == 0){
+                header = "Meu(s) Pedido(s):\n--------------------\n\n";
+            }
+
             var pedidos =   "*Produto*: "+ produto + "\n" + 
                             "*Quantidade*: " + qtd + "\n" + 
                             "*Subtotal*: " + formatSubtotal + "\n" +
                             "--------------------"+"\n";
-            // console.log(text); 
-            var dadosCliente = "";
+            
             if(sizeSession == i + 1){
                 dadosCliente = "\n--------------------\n" +
                                "\n*_Valor Total_*: " + formatValueTotal + "\n" +
@@ -173,14 +182,13 @@ function Checkout() {
                                "*Rua / Av.*: " + dados.rua + "\n" +
                                "*Número*: " + dados.numero + "\n" +
                                "*Bairro*: " + dados.bairro + "\n" +
-                               "*Forma de Pagamento*: " + dados["forma de ragamento"] + "\n" +
+                               "*Forma de Pagamento*: " + dados["forma de Pagamento"] + "\n" +
                                "*Forma de Retirada*: " + dados["forma de retirada"] + "\n";
                 
             }
 
             var textoPedido = header + pedidos + dadosCliente;
             arrayPedido.push(textoPedido);
-
         });
 
         var listaPedidos = arrayPedido.join("");
@@ -188,7 +196,6 @@ function Checkout() {
         await window.open(linkWhatsApp + destinyPhone + "&text=" + encoderPedido, "_blank");
 
         sessionStorage.clear();
-        localStorage.clear();
         window.location.replace("/");
     }
 
