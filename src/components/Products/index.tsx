@@ -199,19 +199,21 @@ function Products() {
                                         if(key !== "ValorTotal"){
                                             const itens = sessionStorage.getItem(key);
                                             newListProducts.push(itens !== null ? JSON.parse(itens) : null);
-                                            setNewListProducts(newListProducts);
                                         }
                                     });
+                                    setNewListProducts(newListProducts);
                                 }
 
-                                async function addCart() {
+                                console.log(newListProducts);
+
+                                function addCart() {
                                     if(!sessionStorage.getItem(product.id.toString())){
                                         addSession();
                                         addArrayProducts();
                                         const total = totalValue();
                                         setTotal(total);
                                         sessionStorage.setItem("ValorTotal", total.toString());
-                                        return await openModal();
+                                        return openModal();
                                     } else {
                                         return itensIguais();
                                     }
