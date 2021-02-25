@@ -48,7 +48,7 @@
 }
 
 .center-products {
-    width: 82%;
+    /* width: 82%; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

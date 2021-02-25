@@ -88,6 +88,24 @@ function Products() {
         });
     }
 
+    function noDecrement() {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Não deve ser menor que 1.',
+            confirmButtonColor: '#4abdac',
+        });
+    }
+
+    function noIncrement(value: any) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Não deve ser maior que ' + value + '!',
+            confirmButtonColor: '#4abdac',
+        });
+    }
+
     function itemDeletado() {
         Swal.fire({
             icon: 'question',
@@ -289,6 +307,7 @@ function Products() {
                                         
                                         function Increment(){ 
                                             if(listProduct.count >= listProduct.amount){
+                                                noIncrement(listProduct.amount);
                                                 listProduct.count = listProduct.amount;
                                             } else {
                                                 listProduct.count = listProduct.count + 1;
@@ -306,6 +325,7 @@ function Products() {
 
                                         function Decrement(){
                                             if(listProduct.count <= 1 ){
+                                                noDecrement();
                                                 const Count = 1;
                                                 return setNewCount(Count);
                                             } else {
@@ -338,7 +358,7 @@ function Products() {
                                                 closeModal();
                                             }
                                             
-                                            return await itemDeletado();
+                                            // return await itemDeletado();
                                         }
 
                                         return (
@@ -352,9 +372,9 @@ function Products() {
                                                     </p>
                                                 </td>
                                                 <td className="td-quantities-table" >
-                                                    <FiMinus type="button" onClick={ Decrement } />
+                                                    <FiMinus className="btn-decrement" type="button" onClick={ Decrement } />
                                                     <input type="number" id="inputCount" className="modal-input-quantities" value={ listProduct.count } onChange={ handleChange }/>
-                                                    <FiPlus type="button" onClick={ Increment } />
+                                                    <FiPlus className="btn-increment" type="button" onClick={ Increment } />
                                                 </td>
                                                 <td className="td-value-table" >
                                                     <h4>R$ { subTotal }</h4>
